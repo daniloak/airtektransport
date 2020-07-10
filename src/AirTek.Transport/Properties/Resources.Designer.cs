@@ -63,9 +63,9 @@ namespace AirTek.Transport.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Byte[].
         /// </summary>
-        internal static byte[] coding_assigment_orders {
+        internal static byte[] coding_assigment_orders_part_two {
             get {
-                object obj = ResourceManager.GetObject("coding_assigment_orders", resourceCulture);
+                object obj = ResourceManager.GetObject("coding_assigment_orders_part_two", resourceCulture);
                 return ((byte[])(obj));
             }
         }

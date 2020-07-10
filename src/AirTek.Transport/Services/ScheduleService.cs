@@ -10,6 +10,7 @@ namespace AirTek.Transport.Services
     public class ScheduleService : IScheduleService
     {
         const int maxOrderPerFlight = 20;
+
         private readonly IFlightRepository _flightRepository;
         public ScheduleService(IFlightRepository flightRepository)
         {
@@ -38,7 +39,8 @@ namespace AirTek.Transport.Services
 
         IEnumerable<Schedule> GetScheduableOrders(IDictionary<string, Order> orders, Flight flight)
         {
-            var scheduableOrders = orders.Where(p => p.Value.Destination == flight.Arrival)
+            var scheduableOrders = orders.OrderBy(p => (int)p.Value.Service)
+                                        .Where(p => p.Value.Destination == flight.Arrival)
                                        .Take(maxOrderPerFlight)
                                        .Select(p => new Schedule()
                                        {
@@ -46,7 +48,8 @@ namespace AirTek.Transport.Services
                                            FlightNumber = flight.Number,
                                            Day = flight.Day,
                                            Departure = flight.Departure,
-                                           Arrival = p.Value.Destination
+                                           Arrival = p.Value.Destination,
+                                           Service = p.Value.Service,
                                        }
                                        );
 

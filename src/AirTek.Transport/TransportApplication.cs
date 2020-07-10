@@ -31,7 +31,7 @@ namespace AirTek.Transport
             Console.ReadKey();
             Console.Clear();
 
-            var orderJson = Resources.coding_assigment_orders;
+            var orderJson = Resources.coding_assigment_orders_part_two;
             var orders = JsonSerializer.Deserialize<Dictionary<string, Order>>(orderJson, _jsonSerializerConfig.JsonSerializerOptions);
 
             var schedules = _scheduleService.Schedule(orders);
@@ -50,7 +50,7 @@ namespace AirTek.Transport
         void WriteScheduledFlights(IEnumerable<Schedule> schedules)
         {
             foreach (var schedule in schedules.Where(p => p.FlightNumber != null))
-                Console.WriteLine($"order: {schedule.Order}, flightnumber: {schedule.FlightNumber}, departure: {schedule.Departure}, arrival: {schedule.Arrival}, day: {schedule.Day}");
+                Console.WriteLine($"order: {schedule.Order}, flightnumber: {schedule.FlightNumber}, departure: {schedule.Departure}, arrival: {schedule.Arrival}, day: {schedule.Day}, service: {schedule.Service.ToString()}");
         }
 
         void WriteNotScheduledFlights(IEnumerable<Schedule> schedules)

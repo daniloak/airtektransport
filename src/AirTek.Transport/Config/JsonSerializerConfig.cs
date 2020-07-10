@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 using System.Text.Json;
+using System.Text.Json.Serialization;
 
 namespace AirTek.Transport.Config
 {
@@ -13,7 +14,7 @@ namespace AirTek.Transport.Config
         {
             JsonSerializerOptions = new JsonSerializerOptions()
             {
-                PropertyNameCaseInsensitive = true
+                PropertyNameCaseInsensitive = true,
             };
         }
     }
